@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<p>
+    <a th:href="@{/create}">
+        Add new employee
+    </a>
+</p>
+<p>
+    <a th:href="@{/search}">
+        Find Employee
+    </a>
+</p>
+<div class="container">
+    <div th:if="${success}" >
+        <span style="color: red" th:text="${success}"></span>
+    </div>
+<table class="table">
+    <thead>
+    <tr class="table-danger">
+        <td>ID</td>
+        <td>Name</td>
+        <td>Age</td>
+        <td>email</td>
+        <td>departmentID</td>
+        <td>Action</td>
+    </tr>
+    </thead>
+    <tr class="table-light" th:each="emp : ${employees}">
+        <td th:text="${emp.getId()}"></td>
+        <td th:text="${emp.getName()}"></td>
+        <td th:text="${emp.getAge()}"></td>
+        <td th:text="${emp.getEmail()}"></td>
+        <td th:text="${emp.getDepartmentid()}"></td>
+        <td><a th:href="@{update/{id}(id=${emp.getId()})}">edit</a></td>
+        <td><a th:href="@{delete/{id}(id=${emp.getId()})} " onclick="return confirm('Are you sure?')">delete</a></td>
+    </tr>
+</table>
+</div>
+</body>
+</html>

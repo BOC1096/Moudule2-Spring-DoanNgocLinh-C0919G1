@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<p>
+    <a th:href="@{/}">Back to home</a>
+</p>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr class="table-danger">
+            <th>ID</th>
+            <th>Name</th>
+            <th>age</th>
+            <th>email</th>
+            <th>departmentID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-light" th:each="emp : ${employee}">
+            <td th:text="${emp.getId()}"></td>
+            <td th:text="${emp.getName()}"></td>
+            <td th:text="${emp.getAge()}"></td>
+            <td th:text="${emp.getEmail()}"></td>
+            <td th:text="${emp.getDepartmentid()}"></td>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
