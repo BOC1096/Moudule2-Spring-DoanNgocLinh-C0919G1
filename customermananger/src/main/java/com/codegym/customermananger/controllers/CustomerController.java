@@ -36,7 +36,6 @@ public class CustomerController {
     public ModelAndView edit(@PathVariable int id) {
         return new ModelAndView("edit", "customer", customerService.findById(id));
     }
-
     @PostMapping("/customer/update")
     public String update(Customer customer, RedirectAttributes redirectAttributes) {
         customerService.update(customer.getId(), customer);
