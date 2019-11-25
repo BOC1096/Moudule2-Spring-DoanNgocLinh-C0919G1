@@ -6,7 +6,6 @@ import com.codegym.democustomermanager.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class CustomerServiceIml implements CustomerService {
@@ -19,9 +18,8 @@ public class CustomerServiceIml implements CustomerService {
         return customerRepository.findAll();
     }
 
-    @Override
-    public Optional<Customer> getById(long id) {
-        return customerRepository.findById(id);
+    public Customer getById(long id) {
+        return customerRepository.findById(id).orElse(null);
     }
 
     @Override

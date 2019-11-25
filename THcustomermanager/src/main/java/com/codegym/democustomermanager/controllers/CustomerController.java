@@ -42,8 +42,8 @@ public class CustomerController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView formEdit(@PathVariable("id") long id) {
-        Optional<Customer> customer = customerService.getById(id);
-        if (customer.isPresent()) {
+        Customer customer = customerService.getById(id);
+        if (customer != null) {
             return new ModelAndView("customer/edit", "customer", customer);
         } else {
             return new ModelAndView("/error:404");
@@ -61,9 +61,11 @@ public class CustomerController {
 
     @GetMapping("/delete/{id}")
     public ModelAndView showDeleteForm(@PathVariable("id") long id) {
-        Optional<Customer> customer = customerService.getById(id);
-        if (customer.isPresent()) {
-            return new ModelAndView("customer/delete", "customer", customer);
+        Customer customer = customerService.getById(id);
+        if (customer != null) {
+            ModelAndView modelAndView = new ModelAndView("customer/delete");
+            modelAndView.addObject("abc", customer);
+           return modelAndView;
         } else {
             return new ModelAndView("/error.404");
         }

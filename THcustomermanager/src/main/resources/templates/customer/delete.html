@@ -10,16 +10,16 @@
 <p>
     <a href="/">Customer list</a>
 </p>
-<form th:action="@{/delete}" th:object="${customer}" method="post">
+<form th:action="@{/delete}" th:object="${abc}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
             <td>First name:</td>
-            <td><input type="text" th:field="*{firstName}"/></td>
+            <td th:text="${abc.firstName}"></td>
         </tr>
         <tr>
             <td>Last name:</td>
-            <td><input type="text" th:field="*{lastName}"/></td>
+            <td th:text="${abc.lastName}"></td>
         </tr>
         <tr>
             <td></td>

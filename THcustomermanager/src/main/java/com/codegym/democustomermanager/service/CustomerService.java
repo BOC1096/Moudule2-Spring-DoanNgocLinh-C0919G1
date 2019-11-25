@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface CustomerService {
     Iterable<Customer> findAll();
 
-    Optional<Customer> getById(long id);
+    Customer getById(long id);
 
     void save(Customer customer);
 
