@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.Optional;
 
 
@@ -30,14 +31,16 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    public ModelAndView home(@RequestParam("s") Optional<String> s, @PageableDefault(size = 5)  Pageable pageable ) {
+    public ModelAndView home(@RequestParam(value = "s", required = false) String s, @PageableDefault(size = 5) Pageable pageable) {
         Page<Customer> customers;
-        if (s.isPresent()) {
-            customers = customerService.findAllByFirstNameContaining(s.get(), pageable);
+        ModelAndView modelAndView = new ModelAndView("customer/list");
+        if (s != null) {
+            customers = customerService.findAllByFirstNameContaining(s, pageable);
+            modelAndView.addObject("search", s);
         } else {
             customers = customerService.findAll(pageable);
         }
-        ModelAndView modelAndView = new ModelAndView("customer/list");
+
         modelAndView.addObject("customers", customers);
         return modelAndView;
     }
