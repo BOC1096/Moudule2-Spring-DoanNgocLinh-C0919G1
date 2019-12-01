@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    <a th:href="@{/}">Tro lai</a>
+</p>
+<div th:object="${sanpham}">
+    <div>
+        <label>Ten</label>
+        <label th:text="${sanpham.ten}"></label>
+    </div>
+    <div>
+        <label>Gia</label>
+        <label th:text="${sanpham.gia}"></label>
+    </div>
+    <div>
+        <label>Mo ta</label>
+        <label th:text="${sanpham.mota}"></label>
+    </div>
+    <div>
+        <label>Hinh</label>
+        <img th:src="@{${sanpham.hinh}}" style="height: 50px;width: 50px"/>
+    </div>
+    <div>
+        <label>Buy</label>
+        <a th:href="@{/buy/{id}(id=${sanpham.id})}">Buy</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    <a th:href="@{/giohang}">Xem gio hang</a>
+</p>
+<p>
+    <span style="color: red" th:text="${success}"></span>
+</p>
+<table border="1">
+    <tr>
+        <td>Ten</td>
+        <td>Gia</td>
+        <td>Hinh</td>
+        <td>Them vao gio</td>
+    </tr>
+    <th:block th:each="sanpham : ${sanphams}">
+        <tr>
+            <td th:text="${sanpham.ten}"></td>
+            <td th:text="${sanpham.gia}"></td>
+            <td><img th:src="@{${sanpham.hinh}}" style="height: 50px;width: 50px"/></td>
+            <td><a th:href="@{/buy/{id}(id=${sanpham.id})}">Buy</a></td>
+            <td><a th:href="@{/view/{id}(id=${sanpham.id})}">View</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
