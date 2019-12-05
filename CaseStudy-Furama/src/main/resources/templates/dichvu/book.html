@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header id="header" th:replace="fragments/layout :: header"></header>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: red"></p>
+</th:block>
+<div>
+    <nav th:replace="fragments/layout :: nav">
+    </nav>
+</div>
+<div id="wrapper">
+    <form method="post" th:action="@{/book}" th:object="${contract}">
+        <input type="hidden" name="service" th:field="*{service}">
+        <label>
+            Check in: <input type="date" th:field="*{dayStart}">
+            Check out: <input type="date" th:field="*{dayEnd}">
+            Deposit: <input type="text" th:field="*{deposit}">
+        </label>
+
+        <input type="submit" value="Book" class="btn btn-success">
+        <main>
+            <div id="content" th:object="${service}" style="height: 1000px; text-align: left;padding-left: 150px">
+                <div><img th:src="@{'../image/' + ${service.image}}" style="width: 100px;height: 100px"></div>
+                <div th:text="'Name: ' + ${service.nameService}"></div>
+                <div th:text="'Area: ' + ${service.area}"></div>
+                <div th:text="'Number Floor: '+${service.numberFloor}"></div>
+                <div th:text="'Max People: '+${service.maxPeople}"></div>
+                <div th:text="'Rent Price: '+${service.rentPrice}"></div>
+                <div th:text=" 'Status: '+(${service.status} ? 'still' : 'over')"></div>
+                <div th:text="'Rent type: '+${service.rentType.nameRent}"></div>
+                <div th:text="'Service type: '+${service.serviceType.nameServiceType}"></div>
+            </div>
+        </main>
+    </form>
+</div>
+<footer th:replace="fragments/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<header th:replace="fragments/layout :: header"></header>
+<div>
+    <nav th:replace="fragments/layout :: nav">
+    </nav>
+</div>
+<main>
+    <th:block th:if="${success}">
+        <h5 th:text="${success}" style="text-align: center;color: red"></h5>
+    </th:block>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("from").value;
+            var y = document.getElementById("to").value;
+            if (x*1 >= y*1) {
+                document.getElementById("result").innerHTML = "Price Invalid";
+                document.getElementById("result").hidden = false;
+                document.getElementById("button").disabled = true;
+            } else {
+                document.getElementById("result").hidden = true;
+                document.getElementById("button").disabled = false;
+            }
+        }
+    </script>
+    <form class="bg-light p-4 m-4">
+        <label>Search About Price:
+            <select name="pricefrom" id="from" onchange="myFunction()">
+                <option value="0">0</option>
+                <option value="500000">500000.00</option>
+                <option value="1000000">1000000.00</option>
+                <option value="2000000">2000000.00</option>
+                <option value="3000000">3000000.00</option>
+                <option value="4000000">4000000.00</option>
+                <option value="5000000">5000000.00</option>
+            </select>
+            To:
+            <select name="priceto" id="to" onchange="myFunction()">
+                <option value="0">0</option>
+                <option value="500000">500000.00</option>
+                <option value="1000000">1000000.00</option>
+                <option value="2000000">2000000.00</option>
+                <option value="3000000">3000000.00</option>
+                <option value="4000000">4000000.00</option>
+                <option value="5000000">5000000.00</option>
+            </select>
+            <input type="submit" value="Search" class="btn btn-success" id="button" onclick="myFunction()">
+        </label>
+        <div id="result" style="color: red"></div>
+    </form>
+    <th:block th:if="${message}">
+        <h5 th:text="${message}" style="text-align: center"></h5>
+    </th:block>
+    <div class="row" style="height: 1000px;width: 1000px; text-align: left; padding-left: 300px; padding-top: 50px">
+        <th:block th:each="service : ${services}">
+            <div class="col-md-6">
+                <div><img th:src="@{'../image/' + ${service.image}}" style="width: 150px;height: 150px"></div>
+                <div th:text="'Name: ' + ${service.nameService}"></div>
+                <div th:text="'Rent Price: ' + ${service.rentPrice}"></div>
+                <div><a style="text-decoration: none" class="btn btn-info" role="button"
+                        th:href="@{/{id}(id=${service.id})}">Detail</a>
+                    <a style="text-decoration: none" class="btn btn-info" role="button"
+                       th:href="@{/book/{id}(id=${service.id})}">Book</a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+    <div style="text-align: center">
+        <a th:href="@{'/'(page=${services.number - 1},pricefrom=${priceFrom},priceto=${priceTo})}">Pre</a>
+        <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
+        <a th:href="@{'/'(page=${services.number + 1},pricefrom=${priceFrom},priceto=${priceTo})}">Next</a>
+    </div>
+</main>
+<footer th:replace="fragments/layout :: footer"></footer>
+</body>
+</html>

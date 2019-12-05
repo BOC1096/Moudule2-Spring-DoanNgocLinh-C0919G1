@@ -40,7 +40,6 @@ public class CustomerController {
         } else {
             customers = customerService.findAll(pageable);
         }
-
         modelAndView.addObject("customers", customers);
         return modelAndView;
     }
