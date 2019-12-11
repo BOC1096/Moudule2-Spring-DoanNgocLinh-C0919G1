@@ -4,19 +4,20 @@
 <head th:replace="fragments/layout :: head">
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-<header id="header" th:replace="fragments/layout :: header"></header>
+<header th:replace="fragments/layout :: header"></header>
 <div>
     <nav th:replace="fragments/layout :: nav">
     </nav>
 </div>
-<div id="wrapper">
-    <main>
-        <section class="ftco-section ftco-degree-bg">
-            <div id="content" th:object="${service}" style="height: 1000px; text-align: left;padding-left: 150px">
+<main>
+    <div class="row" style="height: 1000px;width: 1000px; text-align: left; padding-left: 300px; padding-top: 50px;padding-bottom: auto">
+        <th:block th:each="service : ${like}">
+            <div class="col-md-6">
                 <p>
-                <div><img th:src="@{'../image/' + ${service.image}}" style="width: 300px;height: 300px"></div>
+                <div><img th:src="@{'../image/' + ${service.image}}" style="width: 100px;height: 100px"></div>
                 </p>
                 <p>
                 <div th:text="'Name: ' + ${service.nameService}"></div>
@@ -43,10 +44,9 @@
                 <div th:text="'Service type: '+${service.serviceType.nameServiceType}"></div>
                 </p>
             </div>
-        </section>
-    </main>
-</div>
+        </th:block>
+    </div>
+</main>
 <footer th:replace="fragments/layout :: footer"></footer>
-
 </body>
 </html>

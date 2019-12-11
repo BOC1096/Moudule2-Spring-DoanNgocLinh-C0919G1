@@ -28,11 +28,21 @@ public class Contract {
     @Column(name = "tongtien")
     private double total;
 
-//    @Column(name = "idnhanvien")
+
+    //    @Column(name = "idnhanvien")
 //    private int employeeId;
 //
-//    @Column(name = "idkhachhang")
-//    private int customerId;
+    @ManyToOne
+    @JoinColumn(name = "idkhachhang")
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     @ManyToOne
     @JoinColumn(name = "iddichvu")

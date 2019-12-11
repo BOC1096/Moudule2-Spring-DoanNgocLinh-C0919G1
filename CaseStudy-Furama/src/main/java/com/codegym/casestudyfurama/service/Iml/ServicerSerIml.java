@@ -33,4 +33,9 @@ public class ServicerSerIml implements ServiceSer {
     public Service findById(long id) {
         return serviceReponsitory.findById(id).orElse(null);
     }
+
+    @Override
+    public Service findByNameService(String nameService) {
+        return serviceReponsitory.findByNameService(nameService);
+    }
 }

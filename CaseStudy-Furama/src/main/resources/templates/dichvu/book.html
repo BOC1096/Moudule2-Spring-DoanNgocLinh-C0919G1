@@ -7,9 +7,6 @@
 </head>
 <body>
 <header id="header" th:replace="fragments/layout :: header"></header>
-<th:block th:if="${message}">
-    <p th:text="${message}" style="color: red"></p>
-</th:block>
 <div>
     <nav th:replace="fragments/layout :: nav">
     </nav>
@@ -17,6 +14,7 @@
 <div id="wrapper">
     <form method="post" th:action="@{/book}" th:object="${contract}">
         <input type="hidden" name="service" th:field="*{service}">
+        <input type="hidden" name="service" th:field="*{customer}">
         <label>
             Check in: <input type="date" th:field="*{dayStart}">
             Check out: <input type="date" th:field="*{dayEnd}">
@@ -25,16 +23,16 @@
 
         <input type="submit" value="Book" class="btn btn-success">
         <main>
-            <div id="content" th:object="${service}" style="height: 1000px; text-align: left;padding-left: 150px">
-                <div><img th:src="@{'../image/' + ${service.image}}" style="width: 100px;height: 100px"></div>
-                <div th:text="'Name: ' + ${service.nameService}"></div>
-                <div th:text="'Area: ' + ${service.area}"></div>
-                <div th:text="'Number Floor: '+${service.numberFloor}"></div>
-                <div th:text="'Max People: '+${service.maxPeople}"></div>
-                <div th:text="'Rent Price: '+${service.rentPrice}"></div>
-                <div th:text=" 'Status: '+(${service.status} ? 'still' : 'over')"></div>
-                <div th:text="'Rent type: '+${service.rentType.nameRent}"></div>
-                <div th:text="'Service type: '+${service.serviceType.nameServiceType}"></div>
+            <div id="content" th:object="${services}" style="height: 1000px; text-align: left;padding-left: 150px">
+                <div><img th:src="@{'../image/' + ${services.image}}" style="width: 100px;height: 100px"></div>
+                <div th:text="'Name: ' + ${services.nameService}"></div>
+                <div th:text="'Area: ' + ${services.area}"></div>
+                <div th:text="'Number Floor: '+${services.numberFloor}"></div>
+                <div th:text="'Max People: '+${services.maxPeople}"></div>
+                <div th:text="'Rent Price: '+${services.rentPrice}"></div>
+                <div th:text=" 'Status: '+(${services.status} ? 'still' : 'over')"></div>
+                <div th:text="'Rent type: '+${services.rentType.nameRent}"></div>
+                <div th:text="'Service type: '+${services.serviceType.nameServiceType}"></div>
             </div>
         </main>
     </form>

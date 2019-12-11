@@ -16,4 +16,6 @@ public interface ServiceReponsitory extends JpaRepository<Service, Long> {
     Page<Service> findByServiceTypeOrServiceType(ServiceType serviceType1, ServiceType serviceType2, Pageable pageable);
 
     Page<Service> findByRentPriceBetween(double rentPrice, double rentPrice2, Pageable pageable);
+
+    Service findByNameService(String nameService);
 }

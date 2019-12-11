@@ -30,7 +30,7 @@
     <div class="form-group">
         <label for="birth">Birth day:</label>
         <input type="date" class="form-control" id="birth" placeholder="Enter birthday" name="birth"
-               th:field="*{birthday}" required th:if="${#fields.hasErrors('birthday')}">
+               th:field="*{birthday}" required>
         <th:block>
             <p th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" style="color: red">Name Error</p>
         </th:block>

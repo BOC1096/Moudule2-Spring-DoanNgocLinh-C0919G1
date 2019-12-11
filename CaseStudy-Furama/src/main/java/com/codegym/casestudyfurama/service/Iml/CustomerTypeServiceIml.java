@@ -13,6 +13,7 @@ public class CustomerTypeServiceIml implements CustomerTypeService {
 
     @Autowired
     CustomerTypeRepository customerTypeRepository;
+
     @Override
     public List<CustomerType> findAll() {
         return customerTypeRepository.findAll();

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<header th:replace="fragments/layout :: header"></header>
+<div>
+    <nav th:replace="fragments/layout :: nav">
+    </nav>
+</div>
+<main>
+    <th:block th:if="${message}">
+        <h5 th:text="${message}" style="text-align: center"></h5>
+    </th:block>
+    <div class="row" style="height: 1000px;width: 1000px; text-align: left; padding-left: 300px; padding-top: 50px">
+        <th:block th:each="review : ${reviews}">
+            <div class="col-md-6">
+                <div th:text="'Rate Star: ' + ${review.rateStar}"></div>
+                <div th:text="'Noi Dung: ' + ${review.content}"></div>
+                <div th:text="'Nguoi viet: ' + ${review.customer.fullName}"></div>
+                <!--                <div><a style="text-decoration: none" class="btn btn-info" role="button"-->
+                <!--                        th:href="@{/{id}(id=${service.id})}">Detail</a>-->
+                <!--                    <a style="text-decoration: none" class="btn btn-info" role="button"-->
+                <!--                       th:href="@{/book/{id}(id=${service.id})}">Book</a>-->
+                <!--                </div>-->
+            </div>
+        </th:block>
+    </div>
+    <div style="text-align: center">
+        <a th:href="@{'/'(page=${reviews.number - 1})}">Pre</a>
+        <span th:text="${reviews.number + 1}"></span>/<span th:text="${reviews.totalPages}"></span>
+        <a th:href="@{'/'(page=${reviews.number + 1})}">Next</a>
+    </div>
+</main>
+<footer th:replace="fragments/layout :: footer"></footer>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.codegym.casestudyfurama.entity;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "khachhang")
@@ -10,7 +11,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idkhachhanng")
+    @Column(name = "idkhachhang")
     private long id;
 
     @NotBlank
@@ -41,6 +42,18 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "idloaikhach")
     private CustomerType customerType;
+
+    @OneToMany(targetEntity = Contract.class)
+    private List<Contract> contracts;
+
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
 
     public long getId() {
         return id;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="fragments/layout :: header"></header>
+<div>
+    <nav th:replace="fragments/layout :: nav">
+    </nav>
+</div>
+<main>
+    <!--    <th:block th:if="${message}">-->
+    <!--        <h4 th:text="${message}" style="text-align: center"></h4>-->
+    <!--    </th:block>-->
+    <div class="container" style="padding-top: 50px">
+        <table class="table">
+            <thead class="thead-light">
+            <tr class="table-warning">
+                <td>Id</td>
+                <td>Service Name</td>
+                <td>Day Start</td>
+                <td>Day End</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contract : ${contractList}">
+                <td th:text="${contract.id}"></td>
+                <td th:text="${contract.service.nameService}"></td>
+                <td th:text="${contract.dayStart}"></td>
+                <td th:text="${contract.dayEnd}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="fragments/layout :: footer"></footer>
+</body>
+</html>

@@ -10,9 +10,11 @@ public interface ServiceSer {
 
     Page<Service> findAll(Pageable pageable);
 
-    Page<Service> findByServiceType(ServiceType serviceType1, ServiceType serviceType2,Pageable pageable);
+    Page<Service> findByServiceType(ServiceType serviceType1, ServiceType serviceType2, Pageable pageable);
 
     Page<Service> findByPrice(double rentPrice, double rentPrice2, Pageable pageable);
+
     Service findById(long id);
 
+    Service findByNameService(String nameService);
 }

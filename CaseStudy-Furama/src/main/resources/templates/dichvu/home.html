@@ -20,7 +20,7 @@
         function myFunction() {
             var x = document.getElementById("from").value;
             var y = document.getElementById("to").value;
-            if (x*1 >= y*1) {
+            if (x * 1 >= y * 1) {
                 document.getElementById("result").innerHTML = "Price Invalid";
                 document.getElementById("result").hidden = false;
                 document.getElementById("button").disabled = true;
@@ -68,6 +68,7 @@
                         th:href="@{/{id}(id=${service.id})}">Detail</a>
                     <a style="text-decoration: none" class="btn btn-info" role="button"
                        th:href="@{/book/{id}(id=${service.id})}">Book</a>
+                    <a th:href="@{/like/{id}(id=${service.id})}"><i class="fas fa-heart" ></i></a>
                 </div>
             </div>
         </th:block>
