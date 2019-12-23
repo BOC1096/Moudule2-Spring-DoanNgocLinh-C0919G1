@@ -67,6 +67,7 @@ public class GioHangController {
             if (item.getSanPham().getId() == id) {
                 if (item.getSoLuong() == 1) {
                     giohang.remove(item);
+                    return "redirect:../giohang/";
                 } else {
                     item.setSoLuong(item.getSoLuong() - 1);
                 }
